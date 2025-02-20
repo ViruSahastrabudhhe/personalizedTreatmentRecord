@@ -34,4 +34,4 @@ def forgotPassword():
 
 @authentication.route('/resetPassword', methods=['GET', 'POST'])
 def resetPassword():
-    return render_template('users/beforeLogin/page_signUp.html', legend='Reset password')
+    return render_template('users/beforeLogin/page_resetPassword.html', legend='Reset password')
