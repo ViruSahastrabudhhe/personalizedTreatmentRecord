@@ -18,28 +18,30 @@
         <div class="container mt-5">
             <h1 class="mb-4">{{legend}}</h1>
             
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">First name</label>
-                <input type="email" name="signUpFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Last name</label>
-                <input type="email" name="signUpLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
-            </div>
-
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" name="signUpEmail" class="form-control" id="exampleFormControlInput1" placeholder="Email">
-              </div>
-              
-            <div class="mb-4">
-                <label for="inputPassword5" class="form-label">Password</label>
-                <input type="password" name="signUpPassword" id="inputPassword5" class="form-control" placeholder="Password" aria-describedby="passwordHelpBlock">
-            </div>
-
-            <div class="mb-4 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary w-100">Sign up</button>
-            </div>
+            <form action="{{ url_for('authentication.signUp') }}" method="POST">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">First name</label>
+                    <input type="text" name="signUpFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Last name</label>
+                    <input type="text" name="signUpLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                </div>
+    
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" name="signUpEmail" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+                  </div>
+                  
+                <div class="mb-4">
+                    <label for="inputPassword5" class="form-label">Password</label>
+                    <input type="password" name="signUpPassword" id="inputPassword5" class="form-control" placeholder="Password" aria-describedby="passwordHelpBlock">
+                </div>
+    
+                <div class="mb-4 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary w-100">Sign up</button>
+                </div>
+            </form>
 
             <p>Already have an account? <a href="{{url_for('authentication.login')}}">Sign in</a></p>
         </div>
