@@ -1,0 +1,41 @@
+{% extends 'users/beforeLogin/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block mainPanel %}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="container">
+            <nav style="--bs-breadcrumb-divider: '//';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('authentication.welcome')}}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Login</li>
+                </ol>
+            </nav>
+        </div>
+        
+        <div class="container mt-5">
+            <h1 class="mb-4">{{legend}}</h1>
+            
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" name="loginEmail" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+              </div>
+              
+            <div class="mb-4">
+                <label for="inputPassword5" class="form-label">Password</label>
+                <input type="password" name="loginPassword" id="inputPassword5" class="form-control" placeholder="Password" aria-describedby="passwordHelpBlock">
+            </div>
+
+            <div class="mb-4 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-100">Sign in</button>
+            </div>
+
+            <p>Don't have an account? <a href="{{ url_for('authentication.signUp')}}">Sign up</a></p>
+            <p><a href="{{ url_for('authentication.forgotPassword')}}">I forgot my password.</a></p>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+{% endblock %}
