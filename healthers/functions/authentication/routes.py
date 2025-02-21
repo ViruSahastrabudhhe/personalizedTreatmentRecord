@@ -1,5 +1,5 @@
 from . import authentication
-from healthers.models import get_db_connection
+from healthers.models import get_db_connection, verifyToken
 from .auth import Authentication
 import mysql.connector
 from mysql.connector import Error
@@ -83,8 +83,78 @@ def signUp():
 
 @authentication.route('/forgotPassword', methods=['GET', 'POST'])
 def forgotPassword():
+    if request.method=='POST':
+        email=request.form['forgotPasswordEmail']
+        role='user'
+
+        conn = get_db_connection()
+        if conn is None:
+            flash('NO DB CONNECTION LOL', category='error')
+            return redirect(url_for('authentication.welcome'))
+        
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute("SELECT * FROM users WHERE email=%s and role=%s", (email, role))
+            record = cursor.fetchone()
+
+            if record is None:
+                flash("Email does not exist!", category='error')
+                return redirect(url_for('authentication.forgotPassword'))
+            
+            auth.sendForgotPasswordMail(email)
+            flash("Password reset request sent!", category='success')
+            return redirect(url_for('authentication.login'))
+        except Error as e:
+            conn.rollback()
+            flash(f"{e}", category='error')
+            print(e)
+            return redirect(url_for('authentication.welcome'))
+        finally:
+            cursor.close()
+            conn.close()
+    
     return render_template('users/beforeLogin/page_forgotPassword.html', legend='Forgot password')
 
-@authentication.route('/resetPassword', methods=['GET', 'POST'])
-def resetPassword():
-    return render_template('users/beforeLogin/page_resetPassword.html', legend='Reset password')
+@authentication.route('/resetPassword/<token>', methods=['GET', 'POST'])
+def resetPassword(token):
+    email = verifyToken(token, expiration=3600)
+    # '''
+    #     FIXME: WOULDNT REDIRECT HERE, CAUSING IT TO UPDATE ALL USER PASSWORDS TO WHATEVER
+    #     FIXED: 'email==False' instead of 'email is None'
+    # '''
+    if email==False:
+        flash('Invalid token or token has expired. Please try again!', category='error')
+        return redirect(url_for('authentication.login'))
+
+    if request.method=='POST':
+        newPass=request.form['resetPasswordNewPass']
+        confirmPass=request.form['resetPasswordConfirmPass']
+
+        if newPass!=confirmPass:
+            flash('Passwords do not match!', category='error')
+            return redirect(url_for('authentication.resetPassword', token=token))
+
+        conn = get_db_connection()
+        if conn is None:
+            flash('NO DB CONNECTION LOL', category='error')
+            return redirect(url_for('authentication.welcome'))
+        
+        cursor = conn.cursor()
+        cursor=conn.cursor()
+        hashedPassword = generate_password_hash(newPass, method="pbkdf2:sha256")
+
+        try:
+            cursor.execute('UPDATE users SET password=%s WHERE email=%s', (hashedPassword, email))
+            conn.commit()
+            flash('Password successfully reset!', category='success')
+            return redirect(url_for('authentication.login'))
+        except:
+            conn.rollback()
+            flash('An unexpected error has occurred!', category='error')
+            return redirect(url_for('authentication.login'))
+        finally:
+            cursor.close()
+            conn.close()
+    
+    return render_template('users/beforeLogin/page_resetPassword.html', legend='Reset password', token=token, userEmail=email)

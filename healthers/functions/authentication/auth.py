@@ -1,4 +1,7 @@
-from healthers.models import get_db_connection
+from healthers.models import get_db_connection, generateToken, verifyToken
+from healthers import mail
+from flask_mail import Message
+from flask import url_for
 import mysql.connector
 from mysql.connector import Error
 from werkzeug.security import *
@@ -13,25 +16,6 @@ class Authentication:
             return True
         else:
             return False
-
-    def selectUserEmail(self, email):
-        if self.conn is None:
-            return "NO DB CONNECTION"
-        
-        cursor=self.conn.cursor()
-        
-        try:
-            cursor.execute("SELECT * FROM users WHERE email=%s", (email, ))
-            record=cursor.fetchone()    
-            if record is None:
-                return 404
-        except Error as e:
-            return e
-        finally:
-            cursor.close()
-            self.conn.close()
-
-        return record
 
     def signUpAccount(self, fname, lname, email, password, role):
         if self.conn is None:
@@ -50,6 +34,24 @@ class Authentication:
         finally:
             self.cursor.close()
             self.conn.close()
+
+    def sendForgotPasswordMail(self, email: str):
+        token=generateToken(email)
+        msg=Message(
+            subject='Password reset request!',
+            sender='noreply@gmail.com',
+            recipients=[f"{email}"]
+        )
+        msg.body = f''' To reset your password, please follow the link below.
+
+        {url_for('authentication.resetPassword', token=token, _external=True)}
+
+        ...
+
+        If you didn't send a password reset request, please ignore this message.
+
+        '''
+        mail.send(msg)
 
     def isSignUpFormEmpty(self, fname, lname, email, password):
         if fname=="" and lname=="" and email=="" and password=="":
