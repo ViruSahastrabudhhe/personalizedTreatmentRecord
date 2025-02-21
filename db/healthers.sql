@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2025 at 10:44 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Feb 21, 2025 at 09:57 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userID`, `firstName`, `lastName`, `email`, `password`, `role`) VALUES
 (1, 'asd', 'dsa', 'asd@gmail.com', 'pbkdf2:sha256:600000$V50DB5SbxifGdpoB$206ddefbf753b88fe603a608d40393378f94a17854b0e5406668e657da6d95f1', 'user'),
 (9, 'joji', 'vlogs', 'joji@gmail.com', 'pbkdf2:sha256:600000$970wPe8T395xJVq5$0b9d240fad46ce2cc15e106c6a54ac29bf15e79ac561dceba21553fcf4fe606f', 'user'),
-(10, 'joji', 'vlogs', 'vlog@gmail.com', 'pbkdf2:sha256:600000$bkJAcTieVbtzS1iI$359564be5701ee0325576ec6392333e3090368d86e58aa1cf235ba59e69dc63c', 'user');
+(10, 'joji', 'vlogs', 'vlog@gmail.com', 'pbkdf2:sha256:600000$bkJAcTieVbtzS1iI$359564be5701ee0325576ec6392333e3090368d86e58aa1cf235ba59e69dc63c', 'user'),
+(12, 's21', 'test', 's21contactemail@gmail.com', 'pbkdf2:sha256:1000000$9QNoxpHnbuPl5szV$06fa9b647edf6a256cb526f56d4cf9fe84bf3e9d5d7c13fa3315150a3087dce5', 'user');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +65,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

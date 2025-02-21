@@ -119,10 +119,6 @@ def forgotPassword():
 @authentication.route('/resetPassword/<token>', methods=['GET', 'POST'])
 def resetPassword(token):
     email = verifyToken(token, expiration=3600)
-    # '''
-    #     FIXME: WOULDNT REDIRECT HERE, CAUSING IT TO UPDATE ALL USER PASSWORDS TO WHATEVER
-    #     FIXED: 'email==False' instead of 'email is None'
-    # '''
     if email==False:
         flash('Invalid token or token has expired. Please try again!', category='error')
         return redirect(url_for('authentication.login'))

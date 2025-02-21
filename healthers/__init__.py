@@ -8,6 +8,8 @@ app.config['UPLOAD_FOLDER'] = '/awesomers/static/imgs'
 
 from .functions.authentication import authentication as authentication_bp
 app.register_blueprint(authentication_bp)
+from .functions.systemUser import systemUser as systemUser_bp
+app.register_blueprint(systemUser_bp)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT']=587
