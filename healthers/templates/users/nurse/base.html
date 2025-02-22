@@ -46,7 +46,7 @@
       <!-- Logo Header -->
       <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
-          <a href="#" class="logo">
+          <a href="{{ url_for('nurse.dashboard')}}" class="logo">
             <img
               src="{{ url_for('static', filename='img/logo_light.svg' )}}"
               alt="navbar brand"
@@ -105,6 +105,12 @@
           class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
         >
           <div class="container-fluid">
+            <nav
+            class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex align-items-center"
+          >
+            <h5>Nurse dashboard</h5>
+          </nav>
+
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
               <li class="nav-item topbar-user dropdown hidden-caret">
                 <a
@@ -148,12 +154,6 @@
                       </div>
                     </li>
                     <li>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">My Profile</a>
-                      <a class="dropdown-item" href="#">My Store Profile</a>
-                      <a class="dropdown-item" href="#">Inbox</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Account Setting</a>
                       <div class="dropdown-divider"></div>
                       <form action="{{ url_for('authentication.logout')}}" id="form-logout" method="POST">
                         <button class="dropdown-item" id="btn-logout" type="button">Logout</button>

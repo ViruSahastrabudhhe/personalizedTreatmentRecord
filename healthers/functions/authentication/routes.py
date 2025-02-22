@@ -41,6 +41,8 @@ def login():
             if check_password_hash(record['password'], password):
                 session['loggedIn']=True
                 session['userID']=record['userID']
+                session['fname']=record['firstName']
+                session['lname']=record['lastName']
                 session['email']=record['email']
                 session['role']=record['role']
                 flash('Logged in successfully!', category='success')

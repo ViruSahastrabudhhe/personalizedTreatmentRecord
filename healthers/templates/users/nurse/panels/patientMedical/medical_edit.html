@@ -17,7 +17,7 @@
           <i class="icon-arrow-right"></i>
         </li>
         <li class="nav-item">
-          <a href="{{ url_for('nurse.patientsListManage')}}">Patients list</a>
+          <a href="{{ url_for('nurse.medicalManage')}}">Patients' medical info</a>
         </li>
         <li class="separator">
           <i class="icon-arrow-right"></i>
@@ -36,68 +36,43 @@
           <div class="card">
             <div class="card-header">
               <div class="d-flex align-items-center">
-                <div class="card-title">Edit patients in list</div>
+                <div class="card-title">Edit patients medical info</div>
               </div>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient first name</label>
-                    <input type="text" name="patientsListEditFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                    <label for="medicalInfoAddName" class="form-label">Patient name</label>
+                    <input type="text" name="medicalInfoAddName" class="form-control" id="medicalInfoAddName" placeholder="Patient name">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient sex</label>
-                    <input type="text" name="patientsListEditSex" class="form-control" id="exampleFormControlInput1" placeholder="Sex">
+                    <label for="medicalInfoAddFindings" class="form-label">Findings</label>
+                    <input type="text" name="medicalInfoAddFindings" class="form-control" id="medicalInfoAddFindings" placeholder="Findings">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient city</label>
-                    <input type="text" name="patientsListEditCity" class="form-control" id="exampleFormControlInput1" placeholder="City">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient street</label>
-                    <input type="text" name="patientsListEditSt" class="form-control" id="exampleFormControlInput1" placeholder="Street">
+                    <label for="medicalInfoAddDiagnosis" class="form-label">Diagnosis</label>
+                    <input type="text" name="medicalInfoAddDiagnosis" class="form-control" id="medicalInfoAddDiagnosis" placeholder="Diagnosis">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient last name</label>
-                    <input type="text" name="patientsListEditLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                    <label for="medicalInfoAddAdvice" class="form-label">Advice</label>
+                    <input type="text" name="medicalInfoAddAdvice" class="form-control" id="medicalInfoAddAdvice" placeholder="Advice">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient birthday</label>
-                    <input type="date" name="patientsListEditBirthday" class="form-control" id="exampleFormControlInput1" placeholder="Birthday">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient barangay</label>
-                    <input type="text" name="patientsListEditBrgy" class="form-control" id="exampleFormControlInput1" placeholder="Barangay">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient date registered</label>
-                    <input type="date" name="patientsListEditDateReg" class="form-control" id="exampleFormControlInput1" placeholder="Date registered">
+                    <label for="medicalInfoAddTreatment" class="form-label">Treatment</label>
+                    <input type="text" name="medicalInfoAddTreatment" class="form-control" id="medicalInfoAddTreatment" placeholder="Treatment">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">
-                      Patient contact no.
-                    </label>
-                    <input type="text" name="patientsListEditContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
+                    <label for="medicalInfoAddEvaluation" class="form-label">Evaluation</label>
+                    <input type="text" name="medicalInfoAddEvaluation" class="form-control" id="medicalInfoAddEvaluation" placeholder="Evaluation">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient province</label>
-                    <input type="text" name="patientsListEditProvince" class="form-control" id="exampleFormControlInput1" placeholder="Province">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient town</label>
-                    <input type="text" name="patientsListEditTown" class="form-control" id="exampleFormControlInput1" placeholder="Town">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">
-                      Patient date consulted&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Has patient consulted yet?&nbsp;&nbsp;
-                      <input type="checkbox" onchange="document.getElementById('patientsListEditDateCons').disabled = !this.checked">
-                    </label>
-                    <input type="date" name="patientsListEditDateCons" class="form-control" id="patientsListEditDateCons" placeholder="Date consulted" disabled>
+                    <label for="medicalInfoAddDate" class="form-label">Date of check up</label>
+                    <input type="date" name="medicalInfoAddDate" class="form-control" id="medicalInfoAddDate" placeholder="Date">
                   </div>
                 </div>
               </div>
