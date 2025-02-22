@@ -61,8 +61,8 @@
         <h6 class="op-7 mb-2">Nurse Dashboard</h6>
       </div>
       <div class="d-flex align-items-center justify-content-between ms-md-auto py-2 py-md-0">
-        <a href="#" class="btn btn-primary btn-round me-2" style="width: 200px;">Manage Patient Medical Information</a>
-        <a href="#" class="btn btn-secondary btn-round me-2" style="width: 200px;">Manage Patient Personal Information</a>
+        <a href="{{ url_for('nurse.medicalManage')}}" class="btn btn-primary btn-round me-2" style="width: 200px;">Manage Patient Medical Information</a>
+        <a href="{{ url_for('nurse.patientsListManage')}}" class="btn btn-secondary btn-round me-2" style="width: 200px;">Manage Patient Personal Information</a>
       </div>
     </div>
     <div class="row">

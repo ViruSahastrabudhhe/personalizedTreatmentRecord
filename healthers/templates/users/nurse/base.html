@@ -46,7 +46,7 @@
       <!-- Logo Header -->
       <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
-          <a href="{{ url_for('nurse.dashboard')}}" class="logo">
+          <a href="{{ url_for('nurse.nurseDashboard')}}" class="logo">
             <img
               src="{{ url_for('static', filename='img/logo_light.svg' )}}"
               alt="navbar brand"
@@ -119,13 +119,6 @@
                   href="#"
                   aria-expanded="false"
                 >
-                  <div class="avatar-sm">
-                    <img
-                      src="{{ url_for('static', filename='img/profile.jpg') }}"
-                      alt="..."
-                      class="avatar-img rounded-circle"
-                    />
-                  </div>
                   <span class="profile-username">
                     <span class="op-7">Hi,</span>
                     <span class="fw-bold">{{ fname }} {{ lname }}</span>
@@ -135,13 +128,6 @@
                   <div class="dropdown-user-scroll scrollbar-outer">
                     <li>
                       <div class="user-box">
-                        <div class="avatar-lg">
-                          <img
-                            src="{{ url_for('static', filename='img/profile.jpg') }}"
-                            alt="image profile"
-                            class="avatar-img rounded"
-                          />
-                        </div>
                         <div class="u-text">
                           <h4>{{ fname }} {{ lname }}</h4>
                           <p class="text-muted">{{ email }}</p>

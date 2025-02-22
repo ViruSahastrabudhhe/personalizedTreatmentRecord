@@ -5,7 +5,7 @@
 {% block sidebar %}
 <ul class="nav nav-secondary">
     <li class="nav-item">
-      <a href="{{ url_for('nurse.dashboard') }}">
+      <a href="{{ url_for('nurse.nurseDashboard') }}">
         <i class="fas fa-th-list"></i>
         <p>Dashboard</p>
       </a>
@@ -57,7 +57,7 @@
       <h3 class="fw-bold mb-3">{{legend}}</h3>
       <ul class="breadcrumbs mb-3">
         <li class="nav-home">
-          <a href="{{ url_for('nurse.dashboard')}}">
+          <a href="{{ url_for('nurse.nurseDashboard')}}">
             <i class="icon-home"></i>
           </a>
         </li>
@@ -75,34 +75,12 @@
         </li>
       </ul>
     </div>
-    <div class="row">
-      <div class="ms-auto">
-        <a href="{{ url_for('nurse.medicalArchive')}}">
-          <button
-          class="btn btn-info btn-round"
-          >
-            <i class="fa fa-plus"></i>
-            Archives
-          </button>
-        </a>
-      </div>
-    </div>
     <div class="row mt-3">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <div class="d-flex align-items-center">
-              <h4 class="card-title">Manage patients' medical info</h4>
-              <div class="d-flex gap-2 ms-auto">
-                <a href="{{ url_for('nurse.medicalAdd')}}">
-                    <button
-                    class="btn btn-primary btn-round"
-                    >
-                    <i class="fa fa-plus"></i>
-                    Add record
-                    </button>
-                </a>
-              </div>
+              <h4 class="card-title">Illnesses from patients</h4>
             </div>
           </div>
           <div class="card-body">
@@ -111,26 +89,18 @@
                   <thead>
                     <tr>
                       <th style="width: 5%;">#</th>
-                      <th style="width: 50px;">Date</th>
-                      <th style="width: 100px;">Patient Name</th>
-                      <th style="width: 60px;">Findings</th>
-                      <th style="width: 60px;">Diagnosis</th>
-                      <th style="width: 60px;">Advice</th> 
-                      <th style="width: 60px;">Treatment</th>
-                      <th style="width: 60px;">Evaluation</th>
+                      <th style="width: 50px;">Illness name</th>
+                      <th style="width: 100px;">Date created</th>
+                      <th style="width: 60px;">Date updated</th>
                       <th style="width: 10%;">Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>#</th>
-                      <th>Date</th>
-                      <th>Patient Name</th>
-                      <th>Findings</th>
-                      <th>Diagnosis</th>
-                      <th>Advice</th> 
-                      <th>Treatment</th>
-                      <th>Evaluation</th>
+                      <th>Illness name</th>
+                      <th>Date created</th>
+                      <th>Date updated</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -140,10 +110,6 @@
                           <td>01/02/03</td>
                           <td>Dalohkos, Shokolad Bar</td>
                           <td>Fatigue</td>
-                          <td>Hypertension</td>
-                          <td>Drink</td>
-                          <td>Heart surgery</td>
-                          <td>Sample</td>
                           <td>
                               <div class="form-button-action">
                                   <a href="{{ url_for('nurse.medicalEdit')}}">

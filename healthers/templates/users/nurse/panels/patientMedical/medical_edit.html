@@ -9,7 +9,7 @@
       <h3 class="fw-bold mb-3">{{legend}}</h3>
       <ul class="breadcrumbs mb-3">
         <li class="nav-home">
-          <a href="{{ url_for('nurse.dashboard')}}">
+          <a href="{{ url_for('nurse.nurseDashboard')}}">
             <i class="icon-home"></i>
           </a>
         </li>
@@ -43,36 +43,45 @@
               <div class="row">
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="medicalInfoAddName" class="form-label">Patient name</label>
-                    <input type="text" name="medicalInfoAddName" class="form-control" id="medicalInfoAddName" placeholder="Patient name">
+                    <label for="medicalInfoEditName" class="form-label">Patient name</label>
+                    <input type="text" name="medicalInfoEditName" class="form-control" id="medicalInfoEditName" placeholder="Patient name">
                   </div>
                   <div class="mb-3">
-                    <label for="medicalInfoAddFindings" class="form-label">Findings</label>
-                    <input type="text" name="medicalInfoAddFindings" class="form-control" id="medicalInfoAddFindings" placeholder="Findings">
-                  </div>
-                  <div class="mb-3">
-                    <label for="medicalInfoAddDiagnosis" class="form-label">Diagnosis</label>
-                    <input type="text" name="medicalInfoAddDiagnosis" class="form-control" id="medicalInfoAddDiagnosis" placeholder="Diagnosis">
+                    <label for="medicalInfoEditDate" class="form-label">Date of check up</label>
+                    <input type="date" name="medicalInfoEditDate" class="form-control" id="medicalInfoEditDate" placeholder="Date">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="medicalInfoAddAdvice" class="form-label">Advice</label>
-                    <input type="text" name="medicalInfoAddAdvice" class="form-control" id="medicalInfoAddAdvice" placeholder="Advice">
-                  </div>
-                  <div class="mb-3">
-                    <label for="medicalInfoAddTreatment" class="form-label">Treatment</label>
-                    <input type="text" name="medicalInfoAddTreatment" class="form-control" id="medicalInfoAddTreatment" placeholder="Treatment">
+                    <label for="medicalInfoEditFindings" class="form-label">Findings</label>
+                    <input type="text" name="medicalInfoEditFindings" class="form-control" id="medicalInfoEditFindings" placeholder="Findings">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="medicalInfoAddEvaluation" class="form-label">Evaluation</label>
-                    <input type="text" name="medicalInfoAddEvaluation" class="form-control" id="medicalInfoAddEvaluation" placeholder="Evaluation">
+                    <label for="medicalInfoEditDiagnosis" class="form-label">Diagnosis</label>
+                    <input type="text" name="medicalInfoEditDiagnosis" class="form-control" id="medicalInfoEditDiagnosis" placeholder="Diagnosis">
                   </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
-                    <label for="medicalInfoAddDate" class="form-label">Date of check up</label>
-                    <input type="date" name="medicalInfoAddDate" class="form-control" id="medicalInfoAddDate" placeholder="Date">
+                    <label for="medicalInfoEditTreatment" class="form-label">Treatment</label>
+                    <textarea class="form-control" name="medicalInfoEditTreatment" id="medicalInfoEditTreatment" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="medicalInfoEditAdvice" class="form-label">Advice</label>
+                    <textarea class="form-control" name="medicalInfoEditAdvice" id="medicalInfoEditAdvice" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="medicalInfoEditEvaluation" class="form-label">Evaluation</label>
+                    <textarea class="form-control" name="medicalInfoEditEvaluation" id="medicalInfoEditEvaluation" rows="3"></textarea>
                   </div>
                 </div>
               </div>

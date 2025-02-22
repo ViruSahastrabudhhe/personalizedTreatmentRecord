@@ -46,7 +46,7 @@ def login():
                 session['email']=record['email']
                 session['role']=record['role']
                 flash('Logged in successfully!', category='success')
-                return redirect(url_for('nurse.dashboard'))
+                return redirect(url_for('authentication.viewDashboard'))
             else:
                 flash('Incorrect password! Try again.', category='error')
         except Error as e:
@@ -57,6 +57,13 @@ def login():
             conn.close()
 
     return render_template('users/authentication/page_login.html', legend='Sign in to Healthers')
+
+@authentication.route('/viewDashboard')
+def viewDashboard():
+    if session['role']=='patient':
+        return redirect(url_for('patient.patientDashboard'))
+    if session['role']=='nurse':
+        return redirect(url_for('nurse.nurseDashboard'))
 
 @authentication.route('/logout', methods=['GET', 'POST'])
 def logout():

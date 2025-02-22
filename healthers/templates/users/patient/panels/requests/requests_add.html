@@ -1,0 +1,124 @@
+{% extends 'users/patient/base.html' %}
+
+{% block title %}Add Patients | Lumban RHU{% endblock %}
+
+{% block sidebar %}
+<ul class="nav nav-secondary">
+  <li class="nav-item">
+    <a href="{{ url_for('patient.patientDashboard')}}">
+      <i class="fas fa-th-list"></i>
+      <p>Dashboard</p>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('patient.patientMedicalRecords')}}">
+      <i class="fas fa-pen-square"></i>
+      <p>Medical records</p>
+    </a>
+  </li>
+  <li class="nav-item active">
+    <a href="{{ url_for('patient.patientCreateRequest') }}">
+      <i class="fas fa-pen-square"></i>
+      <p>Create request</p>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('patient.patientRequestHistory')}}">
+      <i class="fas fa-layer-group"></i>
+      <p>Request history</p>
+      <span class="caret" hidden=""></span>
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+{% block mainPanel %}
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header">
+      <h3 class="fw-bold mb-3">{{legend}}</h3>
+      <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+          <a href="{{ url_for('patient.patientDashboard')}}">
+            <i class="icon-home"></i>
+          </a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          {{legend}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form 
+          action="#" 
+          method="POST"
+        >
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-center">
+                <div class="card-title">Create request</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient first name</label>
+                    <input type="text" name="patientRequestAddFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="patientRequestAddPurpose" class="form-label">Purpose of request</label>
+                    <select class="form-select form-select-lg" id="patientRequestAddPurpose" aria-label="Default select example" name="patientRequestAddPurpose">
+                      <option value="Schedule appointment" selected>Schedule appointment</option>
+                      <option value="Upload medical records">Publish medical records</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient last name</label>
+                    <input type="text" name="patientRequestAddLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Patient contact no.
+                    </label>
+                    <input type="number" name="patientRequestAddContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button 
+              class="btn btn-success btn-round"
+              type="submit"
+              name="submitButton"
+              value="addProduct"
+              >
+              Create request
+              </button>
+              <button 
+              type="reset"
+              class="btn btn-danger btn-round"
+              value="deleteFields"
+              >
+              Reset fields
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
