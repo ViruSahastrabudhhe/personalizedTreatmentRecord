@@ -15,7 +15,7 @@ def welcome():
         flash("NO DB CONNECTION", category='error')
         return redirect(url_for('authentication.welcome'))
 
-    return render_template('users/beforeLogin/page_landing.html', legend="Health record system")
+    return render_template('users/authentication/page_landing.html', legend="Lumban RHU")
 
 @authentication.route('/login', methods=['GET', 'POST'])
 def login():
@@ -44,7 +44,7 @@ def login():
                 session['email']=record['email']
                 session['role']=record['role']
                 flash('Logged in successfully!', category='success')
-                return redirect(url_for('authentication.login'))
+                return redirect(url_for('nurse.dashboard'))
             else:
                 flash('Incorrect password! Try again.', category='error')
         except Error as e:
@@ -54,7 +54,13 @@ def login():
             cursor.close()
             conn.close()
 
-    return render_template('users/beforeLogin/page_login.html', legend='Sign in to Healthers')
+    return render_template('users/authentication/page_login.html', legend='Sign in to Healthers')
+
+@authentication.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.clear()
+    flash("Successfully logged out!", category='success')
+    return redirect(url_for('authentication.login'))
 
 @authentication.route('/signUp', methods=['GET', 'POST'])
 def signUp():
@@ -79,7 +85,7 @@ def signUp():
 
         flash("Email already exists!", category='error')
 
-    return render_template('users/beforeLogin/page_signUp.html', legend='Sign up to Healthers')
+    return render_template('users/authentication/page_signUp.html', legend='Sign up to Healthers')
 
 @authentication.route('/forgotPassword', methods=['GET', 'POST'])
 def forgotPassword():
@@ -114,7 +120,7 @@ def forgotPassword():
             cursor.close()
             conn.close()
     
-    return render_template('users/beforeLogin/page_forgotPassword.html', legend='Forgot password')
+    return render_template('users/authentication/page_forgotPassword.html', legend='Forgot password')
 
 @authentication.route('/resetPassword/<token>', methods=['GET', 'POST'])
 def resetPassword(token):
@@ -153,4 +159,4 @@ def resetPassword(token):
             cursor.close()
             conn.close()
     
-    return render_template('users/beforeLogin/page_resetPassword.html', legend='Reset password', token=token, userEmail=email)
+    return render_template('users/authentication/page_resetPassword.html', legend='Reset password', token=token, userEmail=email)

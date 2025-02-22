@@ -1,0 +1,49 @@
+{% extends 'users/nurse/base.html' %}
+
+{% block sidebar %}
+<ul class="nav nav-secondary">
+    <li class="nav-item">
+      <a href="{{ url_for('nurse.dashboard') }}">
+        <i class="fas fa-th-list"></i>
+        <p>Dashboard</p>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a href="{{ url_for('nurse.medicalManage') }}">
+        <i class="fas fa-layer-group"></i>
+        <p>Patient Medical Info</p>
+        <span class="caret" hidden=""></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ url_for('nurse.patientsListManage') }}">
+        <i class="fas fa-pen-square"></i>
+        <p>Patients List</p>
+      </a>
+    </li>
+    <li class="nav-section">
+      <span class="sidebar-mini-icon">
+        <i class="fa fa-ellipsis-h"></i>
+      </span>
+      <h4 class="text-section">Maintenance</h4>
+    </li>
+    <li class="nav-item">
+      <a href="#">
+        <i class="fas fa-chevron-left"></i>
+        <p>Illnesses</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#">
+        <i class="fas fa-chevron-left"></i>
+        <p>Findings</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#">
+        <i class="fas fa-chevron-left"></i>
+        <p>Diagnoses</p>
+      </a>
+    </li>
+</ul>
+{% endblock %}

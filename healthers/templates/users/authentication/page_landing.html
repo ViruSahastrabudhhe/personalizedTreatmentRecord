@@ -1,0 +1,25 @@
+{% extends 'users/authentication/base.html' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block landingCover %}
+    
+{% endblock %}
+
+{% block mainPanel %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{legend}}</h1>
+
+            <label for="date">FUCKING BIRTH DATE</label>
+            <input type="date" id="date">
+        </div>
+    </div>  
+{% endblock %}
+
+{% block script %}
+<script>
+    const dateInput = document.getElementById("date");
+    dateInput.valueAsDate = new Date();
+</script>
+{% endblock %}

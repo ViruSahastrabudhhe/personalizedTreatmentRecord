@@ -3,13 +3,11 @@ from .extensions import mail
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = 'superdupersecretkey'
-app.config['UPLOADED_FILES_DEST'] = '/awesomers/static/imgs'
-app.config['UPLOAD_FOLDER'] = '/awesomers/static/imgs'
 
 from .functions.authentication import authentication as authentication_bp
 app.register_blueprint(authentication_bp)
-from .functions.systemUser import systemUser as systemUser_bp
-app.register_blueprint(systemUser_bp)
+from .functions.nurse import nurse as nurse_bp
+app.register_blueprint(nurse_bp)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT']=587

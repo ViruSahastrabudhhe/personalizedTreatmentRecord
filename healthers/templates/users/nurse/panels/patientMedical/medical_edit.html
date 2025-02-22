@@ -1,0 +1,131 @@
+{% extends 'users/nurse/panels/patientMedical/index.html' %}
+
+{% block title %}Edit Patient Medical Info | Lumban RHU{% endblock %}
+
+{% block mainPanel %}
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header">
+      <h3 class="fw-bold mb-3">{{legend}}</h3>
+      <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+          <a href="{{ url_for('nurse.dashboard')}}">
+            <i class="icon-home"></i>
+          </a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('nurse.patientsListManage')}}">Patients list</a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          {{legend}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form 
+          action="#" 
+          method="POST"
+        >
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-center">
+                <div class="card-title">Edit patients in list</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient first name</label>
+                    <input type="text" name="patientsListEditFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient sex</label>
+                    <input type="text" name="patientsListEditSex" class="form-control" id="exampleFormControlInput1" placeholder="Sex">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient city</label>
+                    <input type="text" name="patientsListEditCity" class="form-control" id="exampleFormControlInput1" placeholder="City">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient street</label>
+                    <input type="text" name="patientsListEditSt" class="form-control" id="exampleFormControlInput1" placeholder="Street">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient last name</label>
+                    <input type="text" name="patientsListEditLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient birthday</label>
+                    <input type="date" name="patientsListEditBirthday" class="form-control" id="exampleFormControlInput1" placeholder="Birthday">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient barangay</label>
+                    <input type="text" name="patientsListEditBrgy" class="form-control" id="exampleFormControlInput1" placeholder="Barangay">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient date registered</label>
+                    <input type="date" name="patientsListEditDateReg" class="form-control" id="exampleFormControlInput1" placeholder="Date registered">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Patient contact no.
+                    </label>
+                    <input type="text" name="patientsListEditContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient province</label>
+                    <input type="text" name="patientsListEditProvince" class="form-control" id="exampleFormControlInput1" placeholder="Province">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient town</label>
+                    <input type="text" name="patientsListEditTown" class="form-control" id="exampleFormControlInput1" placeholder="Town">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Patient date consulted&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Has patient consulted yet?&nbsp;&nbsp;
+                      <input type="checkbox" onchange="document.getElementById('patientsListEditDateCons').disabled = !this.checked">
+                    </label>
+                    <input type="date" name="patientsListEditDateCons" class="form-control" id="patientsListEditDateCons" placeholder="Date consulted" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button 
+              class="btn btn-success btn-round"
+              type="submit"
+              name="submitButton"
+              >
+              Edit information
+              </button>
+              <button 
+              type="reset"
+              class="btn btn-danger btn-round"
+              value="deleteFields"
+              >
+              Reset fields
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

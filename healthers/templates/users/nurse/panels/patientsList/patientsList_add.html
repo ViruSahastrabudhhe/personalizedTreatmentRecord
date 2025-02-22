@@ -1,0 +1,139 @@
+{% extends 'users/nurse/panels/patientsList/index.html' %}
+
+{% block title %}Add Patients | Lumban RHU{% endblock %}
+
+{% block mainPanel %}
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header">
+      <h3 class="fw-bold mb-3">{{legend}}</h3>
+      <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+          <a href="{{ url_for('nurse.dashboard')}}">
+            <i class="icon-home"></i>
+          </a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('nurse.patientsListManage')}}">Patients list</a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          {{legend}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form 
+          action="#" 
+          method="POST"
+        >
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-center">
+                <div class="card-title">Add patients to list</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient first name</label>
+                    <input type="text" name="patientsListAddFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="patientsListAddSex" class="form-label">Patient sex</label>
+                    <select class="form-select form-select-lg" id="patientsListAddSex" aria-label="Default select example">
+                      <option selected>Sex</option>
+                      <option value="" disabled required>---</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                      <option value="Not say">Prefer not to say</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient city</label>
+                    <input type="text" name="patientsListAddCity" class="form-control" id="exampleFormControlInput1" placeholder="City">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient street</label>
+                    <input type="text" name="patientsListAddSt" class="form-control" id="exampleFormControlInput1" placeholder="Street">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient last name</label>
+                    <input type="text" name="patientsListAddLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient birthday</label>
+                    <input type="date" name="patientsListAddBirthday" class="form-control" id="exampleFormControlInput1" placeholder="Birthday">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient barangay</label>
+                    <input type="text" name="patientsListAddBrgy" class="form-control" id="exampleFormControlInput1" placeholder="Barangay">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient date registered</label>
+                    <input type="date" name="patientsListAddDateReg" class="form-control" id="exampleFormControlInput1" placeholder="Date registered">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Patient contact no.
+                    </label>
+                    <input type="text" name="patientsListAddContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient province</label>
+                    <input type="text" name="patientsListAddProvince" class="form-control" id="exampleFormControlInput1" placeholder="Province">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Patient town</label>
+                    <input type="text" name="patientsListAddTown" class="form-control" id="exampleFormControlInput1" placeholder="Town">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Patient date consulted&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Has patient consulted yet?&nbsp;&nbsp;
+                      <input type="checkbox" onchange="document.getElementById('patientsListAddDateCons').disabled = !this.checked">
+                    </label>
+                    <input type="date" name="patientsListAddDateCons" class="form-control" id="patientsListAddDateCons" placeholder="Date consulted" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button 
+              class="btn btn-success btn-round"
+              type="submit"
+              name="submitButton"
+              value="addProduct"
+              >
+              Add patient
+              </button>
+              <button 
+              type="reset"
+              class="btn btn-danger btn-round"
+              value="deleteFields"
+              >
+              Reset fields
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
