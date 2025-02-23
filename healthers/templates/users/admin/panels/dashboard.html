@@ -1,52 +1,22 @@
-{% extends 'users/nurse/base.html' %}
+{% extends 'users/admin/base.html' %}
 
 {% block title %}Dashboard | RHU{% endblock %}
 
 {% block sidebar %}
 <ul class="nav nav-secondary">
-  <li class="nav-item active">
-    <a data-bs-toggle="collapse" href="">
-      <i class="fas fa-th-list"></i>
-      <p>Dashboard</p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{ url_for('nurse.medicalManage')}}">
-      <i class="fas fa-layer-group"></i>
-      <p>Patient Medical Info</p>
-      <span class="caret" hidden=""></span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{ url_for('nurse.patientsListManage')}}">
-      <i class="fas fa-pen-square"></i>
-      <p>Patients List</p>
-    </a>
-  </li>
-  <li class="nav-section">
-    <span class="sidebar-mini-icon">
-      <i class="fa fa-ellipsis-h"></i>
-    </span>
-    <h4 class="text-section">Maintenance</h4>
-  </li>
-  <li class="nav-item">
-    <a href="{{ url_for('nurse.maintenanceIllnesses')}}">
-      <i class="fas fa-chevron-left"></i>
-      <p>Illnesses</p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{ url_for('nurse.maintenanceFindings') }}">
-      <i class="fas fa-chevron-left"></i>
-      <p>Findings</p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{ url_for('nurse.maintenanceDiagnoses') }}">
-      <i class="fas fa-chevron-left"></i>
-      <p>Diagnoses</p>
-    </a>
-  </li>
+    <li class="nav-item active">
+      <a href="{{ url_for('admin.adminDashboard') }}">
+        <i class="fas fa-th-list"></i>
+        <p>Dashboard</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ url_for('admin.adminManage') }}">
+        <i class="fas fa-layer-group"></i>
+        <p>Current users</p>
+        <span class="caret" hidden=""></span>
+      </a>
+    </li>
 </ul>
 {% endblock %}
 
@@ -57,12 +27,8 @@
       class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
     >
       <div>
-        <h3 class="fw-bold mb-3">{{legend}}</h3>
-        <h6 class="op-7 mb-2">Nurse Dashboard</h6>
-      </div>
-      <div class="d-flex align-items-center justify-content-between ms-md-auto py-2 py-md-0">
-        <a href="{{ url_for('nurse.medicalManage')}}" class="btn btn-primary btn-round me-2" style="width: 200px;">Manage Patient Medical Information</a>
-        <a href="{{ url_for('nurse.patientsListManage')}}" class="btn btn-secondary btn-round me-2" style="width: 200px;">Manage Patient Personal Information</a>
+        <h3 class="fw-bold mb-3">Lumban RHU</h3>
+        <h6 class="op-7 mb-2">Admin Dashboard</h6>
       </div>
     </div>
     <div class="row">
@@ -79,7 +45,7 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Patients</p>
+                  <p class="card-category">No. of users</p>
                   <h4 class="card-title">1,294</h4>
                 </div>
               </div>
@@ -100,7 +66,7 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Medical records</p>
+                  <p class="card-category">No. of patients</p>
                   <h4 class="card-title">1303</h4>
                 </div>
               </div>
@@ -121,7 +87,7 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Diagnoses</p>
+                  <p class="card-category">No. of nurses</p>
                   <h4 class="card-title">$ 1,345</h4>
                 </div>
               </div>
@@ -142,7 +108,7 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Findings</p>
+                  <p class="card-category">Archived users</p>
                   <h4 class="card-title">576</h4>
                 </div>
               </div>

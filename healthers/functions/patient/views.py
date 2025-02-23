@@ -21,10 +21,6 @@ def patientCreateRequest():
 def patientRequestArchive():
     return render_template('users/patient/panels/requests/requests_archived.html', legend="Archived requests", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
-@patient.route('/nurseApplication')
-def nurseApplication():
-    return render_template('users/patient/panels/requests/nurse_application.html', legend="Nurse application", fname=session['fname'], lname=session['lname'], userID=session['userID'])
-
 @patient.route('/patient/requests/history')
 def patientRequestHistory():
     return render_template('users/patient/panels/requests/requests_history.html', legend="Request history", fname=session['fname'], lname=session['lname'], userID=session['userID'])

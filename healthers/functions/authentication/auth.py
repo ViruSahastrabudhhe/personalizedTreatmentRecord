@@ -17,7 +17,7 @@ class Authentication:
         else:
             return False
 
-    def signUpAccount(self, fname, lname, email, password, role):
+    def signUpAccount(self, fname, lname, email, password):
         if self.conn is None:
             return "NO DB CONNECTION"
         
@@ -25,7 +25,7 @@ class Authentication:
         hashedPassword = generate_password_hash(password, method="pbkdf2:sha256")
 
         try:
-            cursor.execute("INSERT INTO users(firstName, lastName, email, password, role) VALUES (%s, %s, %s, %s, %s)", (fname, lname, email, hashedPassword, role))
+            cursor.execute("INSERT INTO users(firstName, lastName, email, password) VALUES (%s, %s, %s, %s)", (fname, lname, email, hashedPassword))
             self.conn.commit()
             return True
         except mysql.connector.IntegrityError:

@@ -1,6 +1,6 @@
-{% extends 'users/nurse/panels/patientsList/index.html' %}
+{% extends 'users/admin/panels/currentUsers/index.html' %}
 
-{% block title %}Manage Patients | Lumban RHU{% endblock %}
+{% block title %}Manage Users | Lumban RHU{% endblock %}
 
 {% block mainPanel %}
 <div class="container">
@@ -9,7 +9,7 @@
         <h3 class="fw-bold mb-3">{{legend}}</h3>
         <ul class="breadcrumbs mb-3">
           <li class="nav-home">
-            <a href="{{ url_for('nurse.nurseDashboard')}}">
+            <a href="{{ url_for('admin.adminDashboard')}}">
               <i class="icon-home"></i>
             </a>
           </li>
@@ -17,13 +17,13 @@
             <i class="icon-arrow-right"></i>
           </li>
           <li class="nav-item">
-            <a href="{{ url_for('nurse.patientsListManage')}}">Patients list</a>
+            {{legend}}
           </li>
         </ul>
       </div>
       <div class="row">
         <div class="ms-auto">
-          <a href="{{ url_for('nurse.patientsListArchive')}}">
+          <a href="{{ url_for('admin.adminUserArchive')}}">
             <button
                 class="btn btn-info btn-round"
             >
@@ -39,16 +39,6 @@
             <div class="card-header">
               <div class="d-flex align-items-center">
                 <h4 class="card-title">Manage patients list</h4>
-                <div class="d-flex gap-2 ms-auto">
-                  <a href="{{ url_for('nurse.patientsListAdd')}}">
-                      <button
-                      class="btn btn-primary btn-round"
-                      >
-                      <i class="fa fa-plus"></i>
-                      Add Patient
-                      </button>
-                  </a>
-                </div>
               </div>
             </div>
             <div class="card-body">
@@ -92,7 +82,7 @@
                             <td>01/02/3032</td>
                             <td>
                                 <div class="form-button-action">
-                                    <a href="{{ url_for('nurse.patientsListEdit')}}">
+                                    <a href="{{ url_for('admin.adminEdit')}}">
                                       <button
                                         style="padding: 15px;"
                                         title=""

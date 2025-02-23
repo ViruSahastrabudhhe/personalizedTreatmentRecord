@@ -1,0 +1,92 @@
+{% extends 'users/admin/panels/currentUsers/index.html' %}
+
+{% block title %}Manage Users | Lumban RHU{% endblock %}
+
+{% block mainPanel %}
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header">
+      <h3 class="fw-bold mb-3">{{legend}}</h3>
+      <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+          <a href="{{ url_for('admin.adminDashboard')}}">
+            <i class="icon-home"></i>
+          </a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('admin.adminManage')}}">Manage users</a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          {{legend}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form 
+          action="#" 
+          method="POST"
+        >
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-center">
+                <div class="card-title">Edit users</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">User first name</label>
+                    <input type="text" name="userEditFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">User last name</label>
+                    <input type="text" name="userEditLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      User email
+                    </label>
+                    <input type="email" name="userEditEmail" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button 
+              class="btn btn-success btn-round"
+              type="submit"
+              name="submitButton"
+              >
+              Edit information
+              </button>
+              <button 
+              type="reset"
+              class="btn btn-danger btn-round"
+              value="deleteFields"
+              >
+              Reset fields
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

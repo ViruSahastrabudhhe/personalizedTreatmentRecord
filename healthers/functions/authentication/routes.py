@@ -64,6 +64,8 @@ def viewDashboard():
         return redirect(url_for('patient.patientDashboard'))
     if session['role']=='nurse':
         return redirect(url_for('nurse.nurseDashboard'))
+    if session['role']=='admin':
+        return redirect(url_for('admin.adminDashboard'))
 
 @authentication.route('/logout', methods=['GET', 'POST'])
 def logout():
@@ -78,7 +80,6 @@ def signUp():
         lname=request.form['signUpLname']
         email=request.form['signUpEmail']
         password=request.form['signUpPassword']
-        role='user'
 
         if auth.isConn()==False:
             flash("NO DB CONNECTION", category='error')
@@ -88,7 +89,7 @@ def signUp():
             flash("Please input in the fields!", category='error')
             return redirect(url_for('authentication.signUp'))
 
-        if auth.signUpAccount(fname, lname, email, password, role):
+        if auth.signUpAccount(fname, lname, email, password):
             flash("Created new account!", category='success')
             return redirect(url_for('authentication.login'))
 
