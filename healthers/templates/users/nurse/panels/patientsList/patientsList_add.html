@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-md-12">
         <form 
-          action="#" 
+          action="{{ url_for('nurse.nurseAddPatientInfo')}}" 
           method="POST"
         >
           <div class="card">
@@ -48,7 +48,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="patientsListAddSex" class="form-label">Patient sex</label>
-                    <select class="form-select form-select-lg" id="patientsListAddSex" aria-label="Default select example">
+                    <select class="form-select form-select-lg" name="patientsListAddSex" id="patientsListAddSex" aria-label="Default select example">
                       <option selected>Sex</option>
                       <option value="" disabled required>---</option>
                       <option value="Male">Male</option>
@@ -81,7 +81,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient date registered</label>
-                    <input type="date" name="patientsListAddDateReg" class="form-control" id="exampleFormControlInput1" placeholder="Date registered">
+                    <input type="datetime-local" name="patientsListAddDateReg" class="form-control" id="exampleFormControlInput1" placeholder="Date registered">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -89,7 +89,7 @@
                     <label for="exampleFormControlInput1" class="form-label">
                       Patient contact no.
                     </label>
-                    <input type="text" name="patientsListAddContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
+                    <input type="number" name="patientsListAddContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient province</label>
@@ -104,7 +104,7 @@
                       Patient date consulted&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Has patient consulted yet?&nbsp;&nbsp;
                       <input type="checkbox" onchange="document.getElementById('patientsListAddDateCons').disabled = !this.checked">
                     </label>
-                    <input type="date" name="patientsListAddDateCons" class="form-control" id="patientsListAddDateCons" placeholder="Date consulted" disabled>
+                    <input type="datetime-local" name="patientsListAddDateCons" class="form-control" id="patientsListAddDateCons" placeholder="Date consulted" disabled>
                   </div>
                 </div>
               </div>

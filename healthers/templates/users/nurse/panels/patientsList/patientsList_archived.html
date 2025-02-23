@@ -1,6 +1,6 @@
 {% extends 'users/nurse/panels/patientsList/index.html' %}
 
-{% block title %}Archived Patients| Lumban RHU{% endblock %}
+{% block title %}Archived Patients | Lumban RHU{% endblock %}
 
 {% block mainPanel %}
 <div class="container">
@@ -63,28 +63,27 @@
                     </tr>
                   </tfoot>
                   <tbody id="patientsListManageTableBody">
-                      <tr>
-                          <td>1</td>
-                          <td>Desoto, Lakaj Mosk T.
-                              <br>
-                              Male
-                          </td>
-                          <td>09123456897</td>
-                          <td>1471 Brgu Burgeran Sitio Subd Sur Sta. Cruz, Laguna</td>
-                          <td>01/02/3032</td>
-                          <td>01/02/3032</td>
-                          <td>01/02/3032</td>
-                          <td>
+                    {% for row in rows %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{row.3}}, {{row.2}}
+                            <br>
+                            {{row.5}}
+                        </td>
+                        <td>{{row.4}}</td>
+                        <td>{{row.11}} {{row.9}} {{row.10}} {{row.8}}, {{row.7}}</td>
+                        <td>{{row.6}}</td>
+                        <td>Date registered: {{row.12}}
+                          <br>
+                          <br>
+                          {% if row.14 != None %}
+                          Date Updated:
+                          {{row.14}}
+                          {% endif %}
+                        </td>
+                        <td>{{row.13}}</td>
+                        <td>
                             <div class="form-button-action">
-                                <a href="#">
-                                  <button
-                                    style="padding: 15px;"
-                                    title=""
-                                    class="btn btn-link btn-primary"
-                                  >
-                                    <i class="fa fa-edit"></i>
-                                  </button>
-                                </a>
                                 <div class="btn-group dropdown">
                                   <button
                                   type="button"
@@ -100,20 +99,20 @@
                                   <ul class="dropdown-menu" role="menu" >
                                     <li>
                                       <form 
-                                      action="#" 
+                                      action="{{ url_for('nurse.nurseRestorePatientInfo', patientInfoID=row[0] )}}"
                                       method="POST"
                                       >
                                         <button 
                                           class="dropdown-item"
                                           type="submit"
                                           name="activationButton"
-                                          value="activate"
+                                          value="archive"
                                           >
                                         Restore
                                         </button>
                                       </form>
                                       <form 
-                                      action="#" 
+                                      action="{{ url_for('nurse.nurseDeletePatientInfo', patientInfoID=row[0]) }}" 
                                       method="POST"
                                       >
                                         <button 
@@ -129,8 +128,9 @@
                                   </ul>
                                 </div>
                               </div>
-                          </td>
-                      </tr>
+                        </td>
+                    </tr>
+                  {% endfor %}
                   </tbody>
                 </table>
             </div>

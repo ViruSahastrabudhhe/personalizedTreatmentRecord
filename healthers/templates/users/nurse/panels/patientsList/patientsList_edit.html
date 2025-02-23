@@ -44,37 +44,46 @@
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient first name</label>
-                    <input type="text" name="patientsListEditFname" class="form-control" id="exampleFormControlInput1" placeholder="First name">
+                    <input type="text" name="patientsListEditFname" 
+                    class="form-control" value="{{row.2}}"
+                    id="exampleFormControlInput1" placeholder="First name">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Patient sex</label>
-                    <input type="text" name="patientsListEditSex" class="form-control" id="exampleFormControlInput1" placeholder="Sex">
+                    <label for="patientsListEditSex" class="form-label">Patient sex</label>
+                    <select class="form-select form-select-lg" name="patientsListEditSex" id="patientsListEditSex" aria-label="Default select example">
+                      <option selected>{{row.5}}</option>
+                      <option value="" disabled required>---</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                      <option value="Not say">Prefer not to say</option>
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient city</label>
-                    <input type="text" name="patientsListEditCity" class="form-control" id="exampleFormControlInput1" placeholder="City">
+                    <input type="text" name="patientsListEditCity" class="form-control" value="{{row.8}}" id="exampleFormControlInput1" placeholder="City">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient street</label>
-                    <input type="text" name="patientsListEditSt" class="form-control" id="exampleFormControlInput1" placeholder="Street">
+                    <input type="text" name="patientsListEditSt" class="form-control" value="{{row.11}}" id="exampleFormControlInput1" placeholder="Street">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient last name</label>
-                    <input type="text" name="patientsListEditLname" class="form-control" id="exampleFormControlInput1" placeholder="Last name">
+                    <input type="text" name="patientsListEditLname" class="form-control" value="{{row.3}}" id="exampleFormControlInput1" placeholder="Last name">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient birthday</label>
-                    <input type="date" name="patientsListEditBirthday" class="form-control" id="exampleFormControlInput1" placeholder="Birthday">
+                    <input type="date" name="patientsListEditBirthday" class="form-control" value="{{row.6}}" id="exampleFormControlInput1" placeholder="Birthday">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient barangay</label>
-                    <input type="text" name="patientsListEditBrgy" class="form-control" id="exampleFormControlInput1" placeholder="Barangay">
+                    <input type="text" name="patientsListEditBrgy" class="form-control" value="{{row.9}}" id="exampleFormControlInput1" placeholder="Barangay">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient date registered</label>
-                    <input type="date" name="patientsListEditDateReg" class="form-control" id="exampleFormControlInput1" placeholder="Date registered">
+                    <input type="datetime-local" name="patientsListEditDateReg" class="form-control" value="{{row.12}}" id="exampleFormControlInput1" placeholder="Date registered">
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -82,22 +91,22 @@
                     <label for="exampleFormControlInput1" class="form-label">
                       Patient contact no.
                     </label>
-                    <input type="text" name="patientsListEditContactNo" class="form-control" id="exampleFormControlInput1" placeholder="Contact no.">
+                    <input type="number" name="patientsListEditContactNo" class="form-control" value="{{row.4}}" id="exampleFormControlInput1" placeholder="Contact no.">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient province</label>
-                    <input type="text" name="patientsListEditProvince" class="form-control" id="exampleFormControlInput1" placeholder="Province">
+                    <input type="text" name="patientsListEditProvince" class="form-control" value="{{row.7}}" id="exampleFormControlInput1" placeholder="Province">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Patient town</label>
-                    <input type="text" name="patientsListEditTown" class="form-control" id="exampleFormControlInput1" placeholder="Town">
+                    <input type="text" name="patientsListEditTown" class="form-control" value="{{row.10}}" id="exampleFormControlInput1" placeholder="Town">
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">
                       Patient date consulted&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Has patient consulted yet?&nbsp;&nbsp;
                       <input type="checkbox" onchange="document.getElementById('patientsListEditDateCons').disabled = !this.checked">
                     </label>
-                    <input type="date" name="patientsListEditDateCons" class="form-control" id="patientsListEditDateCons" placeholder="Date consulted" disabled>
+                    <input type="datetime-local" name="patientsListEditDateCons" class="form-control" value="{{row.13}}" id="patientsListEditDateCons" placeholder="Date consulted" disabled>
                   </div>
                 </div>
               </div>

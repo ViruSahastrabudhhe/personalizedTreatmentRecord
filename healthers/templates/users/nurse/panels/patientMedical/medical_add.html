@@ -44,7 +44,12 @@
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
                     <label for="medicalInfoAddName" class="form-label">Patient name</label>
-                    <input type="text" name="medicalInfoAddName" class="form-control" id="medicalInfoAddName" placeholder="Patient name">
+                    <select class="form-select form-select-lg" name="medicalInfoAddName" id="medicalInfoAddName" required aria-label="Default select example">
+                      <option value="" selected>Choose patient</option>
+                      {% for row in rows %}
+                      <option value="{{row.3}}, {{row.2}}">{{row.3}}, {{row.2}}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="medicalInfoAddDate" class="form-label">Date of check up</label>

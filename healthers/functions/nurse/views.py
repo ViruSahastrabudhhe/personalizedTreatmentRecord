@@ -1,4 +1,5 @@
 from . import nurse
+from .routes import getPatientsList, getArchivedPatientsList
 from flask import render_template, flash, redirect, url_for, request, session
 
 @nurse.route('/nurse/dashboard')
@@ -11,7 +12,8 @@ def medicalManage():
 
 @nurse.route('/nurse/patientMedicalInfo/add')
 def medicalAdd():
-    return render_template('users/nurse/panels/patientMedical/medical_add.html', legend="Add patient medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getPatientsList()
+    return render_template('users/nurse/panels/patientMedical/medical_add.html', rows=rows, legend="Add patient medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/patientMedicalInfo/edit')
 def medicalEdit():
@@ -23,7 +25,8 @@ def medicalArchive():
 
 @nurse.route('/nurse/patientsList/manage')
 def patientsListManage():
-    return render_template('users/nurse/panels/patientsList/patientsList_manage.html', legend="Manage patients list", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getPatientsList()
+    return render_template('users/nurse/panels/patientsList/patientsList_manage.html', rows=rows, legend="Manage patients list", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/patientsList/add')
 def patientsListAdd():
@@ -35,7 +38,8 @@ def patientsListEdit():
 
 @nurse.route('/nurse/patientsList/archive')
 def patientsListArchive():
-    return render_template('users/nurse/panels/patientsList/patientsList_archived.html', legend="Archive patients", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getArchivedPatientsList()
+    return render_template('users/nurse/panels/patientsList/patientsList_archived.html', rows=rows, legend="Archive patients", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/diagnoses')
 def maintenanceDiagnoses():
