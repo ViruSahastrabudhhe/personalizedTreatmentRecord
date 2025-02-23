@@ -2,4 +2,4 @@ from flask import Blueprint
 
 nurse=Blueprint('nurse', __name__)
 
-from . import views, routes
+from . import routes, views, getters

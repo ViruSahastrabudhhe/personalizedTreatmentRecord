@@ -1,4 +1,5 @@
 from . import nurse
+from .getters import getPatientNamesToEdit, getPatientsInfoToEdit, getMedicalInfoToEdit
 import mysql.connector
 from mysql.connector import Error
 from healthers.models import get_db_connection
@@ -47,63 +48,6 @@ def nurseAddPatientInfo():
         finally:
             cursor.close()
             conn.close()
-
-def getPatientsList():
-    conn=get_db_connection()
-    if conn is None:
-        flash('NO DB CONNECTION', category='error')
-        return redirect(url_for('authentication.landing'))
-
-    cursor=conn.cursor()
-    userID=session['userID']
-    try:
-        sql="SELECT * FROM patientinfo where userID=%s and isArchived=0"
-        val=(userID, )
-        cursor.execute(sql, val)
-        rows=cursor.fetchall()
-        return rows
-    except Error as e:
-        conn.rollback()
-        flash(f"{e}", category='error')
-        return redirect(url_for('nurse.nurseDashboard'))
-
-def getArchivedPatientsList():
-    conn=get_db_connection()
-    if conn is None:
-        flash('NO DB CONNECTION', category='error')
-        return redirect(url_for('authentication.landing'))
-
-    cursor=conn.cursor()
-    userID=session['userID']
-    try:
-        sql="SELECT * FROM patientinfo where userID=%s and isArchived=1"
-        val=(userID, )
-        cursor.execute(sql, val)
-        rows=cursor.fetchall()
-        return rows
-    except Error as e:
-        conn.rollback()
-        flash(f"{e}", category='error')
-        return redirect(url_for('nurse.nurseDashboard'))
-
-def getPatientsInfoToEdit(patientInfoID):
-    conn=get_db_connection()
-    if conn is None:
-        flash('NO DB CONNECTION', category='error')
-        return redirect(url_for('authentication.landing'))
-
-    cursor=conn.cursor()
-    userID=session['userID']
-    try:
-        sql="SELECT * FROM patientinfo where userID=%s AND patientInfoID=%s"
-        val=(userID, patientInfoID)
-        cursor.execute(sql, val)
-        rows=cursor.fetchone()
-        return rows
-    except Error as e:
-        conn.rollback()
-        flash(f"{e}", category='error')
-        return redirect(url_for('nurse.nurseDashboard'))
 
 @nurse.route('/editPatientInfo/<patientInfoID>', methods=['GET', 'POST'])
 def nurseEditPatientInfo(patientInfoID):
@@ -230,7 +174,7 @@ def nurseDeletePatientInfo(patientInfoID):
 @nurse.route('/addMedicalInfo', methods=['GET', 'POST'])
 def nurseAddMedicalInfo():
     if request.method=='POST':
-        patientName=request.form['medicalInfoAddName']
+        patientInfoID=request.form['medicalInfoAddName']
         patientFindings=request.form['medicalInfoAddFindings']
         patientDiagnosis=request.form['medicalInfoAddDiagnosis']
         patientDate=request.form['medicalInfoAddDate']
@@ -245,3 +189,135 @@ def nurseAddMedicalInfo():
             return redirect(url_for('authentication.landing'))
 
         cursor=conn.cursor()
+
+        try:
+            sql="INSERT INTO patientmedicalinfo(userID, patientInfoID, diagnosis, findings, advice, treatment, evaluation, medicalInfoDateCreated) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+            val=(userID, patientInfoID, patientDiagnosis, patientFindings, patientAdvice, patientTreatment, patientEvaluation, patientDate)
+            cursor.execute(sql, val) 
+            conn.commit()
+            flash("Successfully added patient medical record!", category='success')
+            return redirect(url_for('nurse.medicalManage'))
+        except Error as e:
+            conn.rollback()
+            flash(f"{e}", category='error')
+            return redirect(url_for('nurse.medicalManage'))
+        finally:
+            cursor.close()
+            conn.close()
+
+@nurse.route('/editMedicalInfo/<medicalInfoID>', methods=['GET', 'POST'])
+def nurseEditMedicalInfo(medicalInfoID):
+    row=getMedicalInfoToEdit(medicalInfoID)
+    nameRow=getPatientNamesToEdit(medicalInfoID)
+
+    if request.method=='POST':
+        patientFindings=request.form['medicalInfoEditFindings']
+        patientDiagnosis=request.form['medicalInfoEditDiagnosis']
+        patientTreatment=request.form['medicalInfoEditTreatment']
+        patientAdvice=request.form['medicalInfoEditAdvice']
+        patientEvaluation=request.form['medicalInfoEditEvaluation']
+        patientDateCheckedUp=request.form['medicalInfoEditDate']
+        patientDateUpd = datetime.now()
+        userID=session['userID']      
+
+        conn=get_db_connection()
+        if conn is None:
+            flash('NO DB CONNECTION', category='error')
+            redirect(url_for('authentication.landing'))
+
+        cursor=conn.cursor()
+
+        try:
+            sql = "UPDATE patientmedicalinfo SET diagnosis=%s, findings=%s, advice=%s, treatment=%s, evaluation=%s, medicalInfoDateCreated=%s, medicalInfoDateUpdated=%s WHERE medicalInfoID=%s AND userID=%s"
+            val = (patientDiagnosis, patientFindings, patientAdvice, patientTreatment, patientEvaluation, patientDateCheckedUp, patientDateUpd, medicalInfoID, userID)
+            cursor.execute(sql, val)
+            conn.commit()
+            flash("Successfully edited patient medical record!", category='success')
+            return redirect(url_for('nurse.medicalManage'))
+        except Error as e:
+            conn.rollback()
+            flash(f"{e}", category='error')
+            return redirect(url_for('nurse.medicalManage'))
+        finally:
+            cursor.close()
+            conn.close()
+
+    return render_template('users/nurse/panels/patientMedical/medical_edit.html', nameRow=nameRow, row=row, legend="Edit patients in list", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+
+@nurse.route('/archiveMedicalInfo/<medicalInfoID>', methods=['GET', 'POST'])
+def nurseArchiveMedicalInfo(medicalInfoID):
+    if request.method=='POST':
+        userID=session['userID']
+
+        conn=get_db_connection()
+        if conn is None:
+            flash('NO DB CONNECTION', category='error')
+            redirect(url_for('authentication.landing'))
+        cursor=conn.cursor()
+
+        try:
+            sql="UPDATE patientmedicalinfo SET isArchived=1 WHERE medicalInfoID=%s AND userID=%s"
+            val=(medicalInfoID, userID)
+            cursor.execute(sql, val)
+            conn.commit()
+            flash("Successfully archived patient medical record!", category='success')
+            return redirect(url_for('nurse.medicalManage'))
+        except Error as e:
+            conn.rollback()
+            flash(f"{e}", category='error')
+            return redirect(url_for('nurse.medicalManage'))
+        finally:
+            cursor.close()
+            conn.close()
+
+@nurse.route('/restoreMedicalInfo/<medicalInfoID>', methods=['GET', 'POST'])
+def nurseRestoreMedicalInfo(medicalInfoID):
+    if request.method=='POST':
+        userID=session['userID']
+
+        conn=get_db_connection()
+        if conn is None:
+            flash('NO DB CONNECTION', category='error')
+            redirect(url_for('authentication.landing'))
+        cursor=conn.cursor()
+
+        try:
+            sql="UPDATE patientmedicalinfo SET isArchived=0 WHERE medicalInfoID=%s AND userID=%s"
+            val=(medicalInfoID, userID)
+            cursor.execute(sql, val)
+            conn.commit()
+            flash("Successfully restored patient medical record!", category='success')
+            return redirect(url_for('nurse.medicalManage'))
+        except Error as e:
+            conn.rollback()
+            flash(f"{e}", category='error')
+            return redirect(url_for('nurse.medicalManage'))
+        finally:
+            cursor.close()
+            conn.close()
+
+@nurse.route('/deleteMedicalInfo/<medicalInfoID>', methods=['GET', 'POST'])
+def nurseDeleteMedicalInfo(medicalInfoID):
+    if request.method=='POST':
+        userID=session['userID']
+
+        conn=get_db_connection()
+        if conn is None:
+            flash('NO DB CONNECTION', category='error')
+            redirect(url_for('authentication.landing'))
+        cursor=conn.cursor()
+
+        try:
+            sql="DELETE FROM patientmedicalinfo WHERE medicalInfoID=%s AND userID=%s"
+            val=(medicalInfoID, userID)
+            cursor.execute(sql, val)
+            conn.commit()
+            flash("Successfully deleted patient medical record!", category='success')
+            return redirect(url_for('nurse.medicalManage'))
+        except Error as e:
+            conn.rollback()
+            flash(f"{e}", category='error') 
+            return redirect(url_for('nurse.medicalManage'))
+        finally:
+            cursor.close()
+            conn.close()

@@ -81,18 +81,25 @@
                     </tr>
                   </tfoot>
                   <tbody id="patientsListManageTableBody">
+                    {% for row in rows %}
                       <tr>
-                          <td>1</td>
-                          <td>01/02/03</td>
-                          <td>Dalohkos, Shokolad Bar</td>
-                          <td>Fatigue</td>
-                          <td>Hypertension</td>
-                          <td>Drink</td>
-                          <td>Heart surgery</td>
-                          <td>Sample</td>
+                          <td>{{loop.index}}</td>
+                          <td>Date created: {{row.8}}
+                            {% if row.9 != None %}
+                            <br>
+                            <br>
+                            Date updated: {{row.9}}
+                            {% endif %}
+                          </td>
+                          <td>{{nameRows[loop.index-1]}}</td>
+                          <td>{{row.4}}</td>
+                          <td>{{row.3}}</td>
+                          <td>{{row.5}}</td>
+                          <td>{{row.6}}</td>
+                          <td>{{row.7}}</td>
                           <td>
                               <div class="form-button-action">
-                                  <a href="{{ url_for('nurse.medicalEdit')}}">
+                                  <a href="{{ url_for('nurse.nurseEditMedicalInfo', medicalInfoID=row[0] ) }}">
                                     <button
                                       style="padding: 15px;"
                                       title=""
@@ -116,7 +123,7 @@
                                     <ul class="dropdown-menu" role="menu" >
                                       <li>
                                         <form 
-                                        action="#" 
+                                        action="{{ url_for('nurse.nurseArchiveMedicalInfo', medicalInfoID=row[0])}}" 
                                         method="POST"
                                         >
                                           <button 
@@ -129,7 +136,7 @@
                                           </button>
                                         </form>
                                         <form 
-                                        action="#" 
+                                        action="{{ url_for('nurse.nurseDeleteMedicalInfo', medicalInfoID=row[0] )}}" 
                                         method="POST"
                                         >
                                           <button 
@@ -147,6 +154,7 @@
                                 </div>
                           </td>
                       </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
             </div>

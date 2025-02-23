@@ -1,14 +1,20 @@
 from . import nurse
-from .routes import getPatientsList, getArchivedPatientsList
+from .getters import getPatientsList, getMedicalInfo, getDiagnosis, getFindings, getPatientNamesForArchivedMedicalInfo, getPatientNamesFromPatientInfo, getArchivedPatientsList, getArchivedMedicalInfo, getPatientCount, getMedicalCount, getFindingsCount, getDiagnosisCount
 from flask import render_template, flash, redirect, url_for, request, session
 
 @nurse.route('/nurse/dashboard')
 def nurseDashboard():
-    return render_template('users/nurse/panels/dashboard.html', legend="Lumban RHU", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    patientRows=getPatientCount()
+    medicalRows=getMedicalCount()
+    diagnosisRows=getDiagnosisCount()
+    findingsRows=getFindingsCount()
+    return render_template('users/nurse/panels/dashboard.html', patientRows=patientRows, medicalRows=medicalRows, diagnosisRows=diagnosisRows, findingsRows=findingsRows, legend="Lumban RHU", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/patientMedicalInfo/manage')
 def medicalManage():
-    return render_template('users/nurse/panels/patientMedical/medical_manage.html', legend="Manage patients medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getMedicalInfo()
+    nameRows=getPatientNamesFromPatientInfo()
+    return render_template('users/nurse/panels/patientMedical/medical_manage.html', nameRows=nameRows, rows=rows, legend="Manage patients medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/patientMedicalInfo/add')
 def medicalAdd():
@@ -17,11 +23,14 @@ def medicalAdd():
 
 @nurse.route('/nurse/patientMedicalInfo/edit')
 def medicalEdit():
-    return render_template('users/nurse/panels/patientMedical/medical_edit.html', legend="Edit patient medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getPatientsList()
+    return render_template('users/nurse/panels/patientMedical/medical_edit.html', rows=rows, legend="Edit patient medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/patientMedicalInfo/archived')
 def medicalArchive():
-    return render_template('users/nurse/panels/patientMedical/medical_archived.html', legend="Archive patient medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getArchivedMedicalInfo()
+    nameRows=getPatientNamesForArchivedMedicalInfo()
+    return render_template('users/nurse/panels/patientMedical/medical_archived.html', nameRows=nameRows, rows=rows, legend="Archive patient medical info", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/patientsList/manage')
 def patientsListManage():
@@ -41,13 +50,25 @@ def patientsListArchive():
     rows=getArchivedPatientsList()
     return render_template('users/nurse/panels/patientsList/patientsList_archived.html', rows=rows, legend="Archive patients", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
+@nurse.route('/nurse/requests')
+def nurseRequests():
+    rows=getArchivedPatientsList()
+    return render_template('users/nurse/panels/requests/nurse_requests.html', rows=rows, legend="Requests", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+
+@nurse.route('/nurse/requests/archive')
+def nurseRequestsArchive():
+    rows=getArchivedPatientsList()
+    return render_template('users/nurse/panels/requests/nurse_requests_archived.html', rows=rows, legend="Request archive", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+
 @nurse.route('/nurse/diagnoses')
 def maintenanceDiagnoses():
-    return render_template('users/nurse/panels/maintenance/diagnoses.html', legend="Diagnoses", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getDiagnosis()
+    return render_template('users/nurse/panels/maintenance/diagnoses.html', rows=rows, legend="Diagnoses", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/findings')
 def maintenanceFindings():
-    return render_template('users/nurse/panels/maintenance/findings.html', legend="Findings", fname=session['fname'], lname=session['lname'], userID=session['userID'])
+    rows=getFindings()
+    return render_template('users/nurse/panels/maintenance/findings.html', rows=rows, legend="Findings", fname=session['fname'], lname=session['lname'], userID=session['userID'])
 
 @nurse.route('/nurse/illnesses')
 def maintenanceIllnesses():

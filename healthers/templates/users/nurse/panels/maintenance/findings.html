@@ -23,6 +23,12 @@
         <p>Patients List</p>
       </a>
     </li>
+    <li class="nav-item">
+      <a href="{{ url_for('nurse.nurseRequests')}}">
+        <i class="fas fa-pen-square"></i>
+        <p>Requests</p>
+      </a>
+    </li>
     <li class="nav-section">
       <span class="sidebar-mini-icon">
         <i class="fa fa-ellipsis-h"></i>
@@ -105,59 +111,61 @@
                     </tr>
                   </tfoot>
                   <tbody id="patientsListManageTableBody">
+                    {% for row in rows %}
                       <tr>
-                          <td>1</td>
-                          <td>01/02/03</td>
-                          <td>Dalohkos, Shokolad Bar</td>
-                          <td>Fatigue</td>
-                          <td>
-                              <div class="form-button-action">
-                                  <div class="btn-group dropdown">
-                                    <button
-                                    type="button"
-                                    style="padding: 15px;"
-                                    title=""
-                                    class="btn btn-link btn-black"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="true"
-                                    id=""
+                        <td>{{loop.index}}</td>
+                        <td>{{row.4}}</td>
+                        <td>{{row.8}}</td>
+                        <td>{{row.9}}</td>
+                        <td>
+                          <div class="form-button-action">
+                              <div class="btn-group dropdown">
+                                <button
+                                type="button"
+                                style="padding: 15px;"
+                                title=""
+                                class="btn btn-link btn-black"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="true"
+                                id=""
+                                >
+                                  <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" >
+                                  <li>
+                                    <form 
+                                    action="#" 
+                                    method="POST"
                                     >
-                                      <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu" >
-                                      <li>
-                                        <form 
-                                        action="#" 
-                                        method="POST"
+                                      <button 
+                                        class="dropdown-item"
+                                        type="submit"
+                                        name="activationButton"
+                                        value="activate"
                                         >
-                                          <button 
-                                            class="dropdown-item"
-                                            type="submit"
-                                            name="activationButton"
-                                            value="activate"
-                                            >
-                                          Archive
-                                          </button>
-                                        </form>
-                                        <form 
-                                        action="#" 
-                                        method="POST"
-                                        >
-                                          <button 
-                                            class="dropdown-item" 
-                                            type="submit" 
-                                            name="deleteProduct" 
-                                            value="delete"
-                                          >
-                                          Delete
-                                          </button>
-                                        </form>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                          </td>
+                                      Archive
+                                      </button>
+                                    </form>
+                                    <form 
+                                    action="#" 
+                                    method="POST"
+                                    >
+                                      <button 
+                                        class="dropdown-item" 
+                                        type="submit" 
+                                        name="deleteProduct" 
+                                        value="delete"
+                                      >
+                                      Delete
+                                      </button>
+                                    </form>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                        </td>
                       </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
             </div>

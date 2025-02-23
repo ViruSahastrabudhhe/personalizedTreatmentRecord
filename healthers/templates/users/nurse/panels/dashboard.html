@@ -5,7 +5,7 @@
 {% block sidebar %}
 <ul class="nav nav-secondary">
   <li class="nav-item active">
-    <a data-bs-toggle="collapse" href="">
+    <a data-bs-toggle="collapse" href="{{ url_for('nurse.nurseDashboard')}}">
       <i class="fas fa-th-list"></i>
       <p>Dashboard</p>
     </a>
@@ -21,6 +21,12 @@
     <a href="{{ url_for('nurse.patientsListManage')}}">
       <i class="fas fa-pen-square"></i>
       <p>Patients List</p>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('nurse.nurseRequests')}}">
+      <i class="fas fa-pen-square"></i>
+      <p>Requests</p>
     </a>
   </li>
   <li class="nav-section">
@@ -80,7 +86,7 @@
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
                   <p class="card-category">Patients</p>
-                  <h4 class="card-title">1,294</h4>
+                  <h4 class="card-title">{{patientRows.0}}</h4>
                 </div>
               </div>
             </div>
@@ -101,7 +107,7 @@
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
                   <p class="card-category">Medical records</p>
-                  <h4 class="card-title">1303</h4>
+                  <h4 class="card-title">{{medicalRows.0}}</h4>
                 </div>
               </div>
             </div>
@@ -122,7 +128,7 @@
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
                   <p class="card-category">Diagnoses</p>
-                  <h4 class="card-title">$ 1,345</h4>
+                  <h4 class="card-title">{{diagnosisRows.0}}</h4>
                 </div>
               </div>
             </div>
@@ -143,7 +149,7 @@
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
                   <p class="card-category">Findings</p>
-                  <h4 class="card-title">576</h4>
+                  <h4 class="card-title">{{findingsRows.0}}</h4>
                 </div>
               </div>
             </div>

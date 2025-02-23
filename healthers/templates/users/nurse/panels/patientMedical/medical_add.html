@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-md-12">
         <form 
-          action="#" 
+          action="{{ url_for('nurse.nurseAddMedicalInfo')}}" 
           method="POST"
         >
           <div class="card">
@@ -47,16 +47,10 @@
                     <select class="form-select form-select-lg" name="medicalInfoAddName" id="medicalInfoAddName" required aria-label="Default select example">
                       <option value="" selected>Choose patient</option>
                       {% for row in rows %}
-                      <option value="{{row.3}}, {{row.2}}">{{row.3}}, {{row.2}}</option>
+                      <option value="{{row.0}}">{{row.3}}, {{row.2}}</option>
                       {% endfor %}
                     </select>
                   </div>
-                  <div class="mb-3">
-                    <label for="medicalInfoAddDate" class="form-label">Date of check up</label>
-                    <input type="date" name="medicalInfoAddDate" class="form-control" id="medicalInfoAddDate" placeholder="Date">
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
                     <label for="medicalInfoAddFindings" class="form-label">Findings</label>
                     <input type="text" name="medicalInfoAddFindings" class="form-control" id="medicalInfoAddFindings" placeholder="Findings">
@@ -64,9 +58,15 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="mb-3">
+                    <label for="medicalInfoAddDate" class="form-label">Date of check up</label>
+                    <input type="datetime-local" name="medicalInfoAddDate" class="form-control" id="medicalInfoAddDate" placeholder="Date">
+                  </div>
+                  <div class="mb-3">
                     <label for="medicalInfoAddDiagnosis" class="form-label">Diagnosis</label>
                     <input type="text" name="medicalInfoAddDiagnosis" class="form-control" id="medicalInfoAddDiagnosis" placeholder="Diagnosis">
                   </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
                 </div>
                 <div class="row">
                   <div class="col-md-6 col-lg-4">
